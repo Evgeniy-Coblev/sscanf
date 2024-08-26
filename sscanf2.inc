@@ -120,11 +120,6 @@
 	#undef SSCANF_STATIC__
 	#define SSCANF_STATIC__ static
 #endif
-#if __pawn_build == 0
-	#if !defined SSCANF_NO_NICE_FEATURES
-		#error sscanf utilises community compiler features.  Use `#define SSCANF_NO_NICE_FEATURES` to live without (if you can call that living) or better yet download it here: github.com/pawn-lang/compiler/releases
-	#endif
-#endif
 
 /**
  * <library>sscanf</library>
@@ -717,9 +712,8 @@ native unformat(const data[], const format[], {T_WEAPON, Float, _}:...);
  * <library>sscanf</library>
  * <remarks>
  * The fallback for the filename in <c>sscanf</c> on the old compiler, which
- * doesn't have the inbuilt <c>__file</c> macro.  This is the "feature" enabled
- * by <c>SSCANF_NO_NICE_FEATURES</c>.  Appends <c>"unknown file"</c> in the
- * plugin when line number <c>&lt; 0</c>.
+ * doesn't have the inbuilt <c>__file</c> macro.  Appends <c>"unknown file"</c>
+ * in the plugin when line number <c>&lt; 0</c>.
  * </remarks>
  */
 stock const SSCANF_UNK_[] = "sscanf";
@@ -728,9 +722,8 @@ stock const SSCANF_UNK_[] = "sscanf";
  * <library>sscanf</library>
  * <remarks>
  * The fallback for the filename in <c>unformat</c> on the old compiler, which
- * doesn't have the inbuilt <c>__file</c> macro.  This is the "feature" enabled
- * by <c>SSCANF_NO_NICE_FEATURES</c>.  Appends <c>"unknown file"</c> in the
- * plugin when line number <c>&lt; 0</c>.
+ * doesn't have the inbuilt <c>__file</c> macro.  Appends <c>"unknown file"</c>
+ * in the plugin when line number <c>&lt; 0</c>.
  * </remarks>
  */
 stock const SSCANF_FOM_[] = "unformat";
@@ -739,9 +732,8 @@ stock const SSCANF_FOM_[] = "unformat";
  * <library>sscanf</library>
  * <remarks>
  * The fallback for the filename in <c>extract</c> on the old compiler, which
- * doesn't have the inbuilt <c>__file</c> macro.  This is the "feature" enabled
- * by <c>SSCANF_NO_NICE_FEATURES</c>.  Appends <c>"unknown file"</c> in the
- * plugin when line number <c>&lt; 0</c>.
+ * doesn't have the inbuilt <c>__file</c> macro.  Appends <c>"unknown file"</c>
+ * in the plugin when line number <c>&lt; 0</c>.
  * </remarks>
  */
 stock const SSCANF_EXT_[] = "extract";
@@ -2061,9 +2053,6 @@ stock SSCANF_Debug()
 	printf(" | Plugin%s            %d.%d%d.%d%d   |", v2 > v1 ? (" (newer):") : (":        "), v2 >>> 16, v2 >>> 12 & 0xF, v2 >>> 8 & 0xF, v2 >>> 4 & 0xF, v2 & 0xF);
 	printf(gap);
 	printf(" | __pawn_build:           %10d   |", __pawn_build);
-	#if __pawn_build == 0
-		printf(" | SSCANF_NO_NICE_FEATURES              |");
-	#endif
 	#if SSCANF_NPC
 		printf(" | SSCANF_NPC                           |");
 	#endif
